@@ -1,8 +1,9 @@
 # UNIT OF WORK
 
-Create methods to:
+Begins transactions on different repositories.
+
+Create methods for:
 - Register
-- Unregister
+- UnRegister
 - GetRepository
 - Do
-
