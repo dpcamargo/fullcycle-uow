@@ -85,3 +85,15 @@ func (u *Uow) CommitOrRollback() error {
 	u.Tx = nil
 	return nil
 }
+
+func (u *Uow) GetRepository(ctx context.Context, name string) (interface{}, error) {
+	if u.Tx == nil {
+		tx, err := u.Db.BeginTx(ctx, nil)
+		if err != nil {
+			return nil, err
+		}
+		u.Tx = tx
+	}
+	repo := u.Repositories[name](u.Tx)
+	return repo, nil
+}
